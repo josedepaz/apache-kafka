@@ -26,6 +26,9 @@ public class MainApplication {
     String inputTopic = args[2];
     String validTopic = args[3];
     String invalidTopic = args[4];
+    for(String arg: args) {
+      System.out.println("arg: " + arg);
+    }
     Reader reader = new Reader(servers, groupId, inputTopic);
     Validator validator = new Validator(servers, validTopic, invalidTopic);
     reader.run(validator);
