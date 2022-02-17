@@ -1,5 +1,6 @@
 package kafka;
 
+import kafka.producer.Enricher;
 import kafka.reader.Reader;
 import kafka.validator.Validator;
 import kafka.writer.Writer;
@@ -30,8 +31,8 @@ public class MainApplication {
       System.out.println("arg: " + arg);
     }
     Reader reader = new Reader(servers, groupId, inputTopic);
-    Validator validator = new Validator(servers, validTopic, invalidTopic);
-    reader.run(validator);
+    Enricher enricher = new Enricher(servers, validTopic, invalidTopic);
+    reader.run(enricher);
 
   }
 

@@ -7,12 +7,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.maxmind.geoip.Location;
 import kafka.extractor.GeoIPService;
+import kafka.extractor.OpenExchangeService;
 
 public class Enricher implements Producer{
+
   private final KafkaProducer<String, String> producer;
   private final String validMessages;
   private final String invalidMessages;
   private static final ObjectMapper MAPPER = new ObjectMapper();
+
   public Enricher(String servers, String validMessages, String
       invalidMessages) {
     this.producer = new KafkaProducer<>
@@ -36,6 +39,8 @@ public class Enricher implements Producer{
             location.countryName);
         ((ObjectNode) root).with("customer").put("city",
             location.city);
+        final OpenExchangeService oes = new OpenExchangeService();
+        ((ObjectNode) root).with("currency").put("rate", oes.getPrice("BTC"));//4
         Producer.write(this.producer, this.validMessages,
             MAPPER.writeValueAsString(root));
       }

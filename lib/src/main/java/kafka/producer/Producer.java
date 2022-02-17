@@ -5,12 +5,15 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 public interface Producer {
+
   void process(String message);                                 //1
+
   static void write(KafkaProducer<String, String> producer,
                     String topic, String message) {             //2
     ProducerRecord<String, String> pr = new ProducerRecord<>(topic, message);
     producer.send(pr);
   }
+
   static Properties createConfig(String servers) {              //3
     Properties config = new Properties();
     config.put("bootstrap.servers", servers);

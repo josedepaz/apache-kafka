@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OpenExchangeService {
-  private static final String API_KEY = "YOUR_API_KEY_VALUE_HERE";  //1
+  private static final String API_KEY = "846dd85e074244a6a2b7d0884156e267";  //1
   private static final ObjectMapper MAPPER = new ObjectMapper();
 
   public double getPrice(String currency) {

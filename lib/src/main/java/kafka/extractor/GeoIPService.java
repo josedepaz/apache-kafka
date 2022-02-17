@@ -5,8 +5,11 @@ import com.maxmind.geoip.LookupService;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public final class GeoIPService {
+
+public class GeoIPService {
+
   private static final String MAXMINDDB = "/Users/josedepaz/Documents/Temp/GeoLiteCity.dat";
+
   public Location getLocation(String ipAddress) {
     try {
       final LookupService maxmind =
