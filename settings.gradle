@@ -9,3 +9,5 @@
 
 rootProject.name = 'kafka'
 include('lib')
+include 'kioto'
+

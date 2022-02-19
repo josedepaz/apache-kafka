@@ -22,17 +22,22 @@ public class MainApplication {
 
   public static void main(String[] args) {
 
-    String servers = args[0];
-    String groupId = args[1];
-    String inputTopic = args[2];
-    String validTopic = args[3];
-    String invalidTopic = args[4];
-    for(String arg: args) {
-      System.out.println("arg: " + arg);
+    try {
+      String servers = args[0];
+      String groupId = args[1];
+      String inputTopic = args[2];
+      String validTopic = args[3];
+      String invalidTopic = args[4];
+      for(String arg: args) {
+        System.out.println("arg: " + arg);
+      }
+      Reader reader = new Reader(servers, groupId, inputTopic);
+      Enricher enricher = new Enricher(servers, validTopic, invalidTopic);
+      reader.run(enricher);
+
+    } catch(Exception ex) {
+      System.out.println("There are not enough args to run..");
     }
-    Reader reader = new Reader(servers, groupId, inputTopic);
-    Enricher enricher = new Enricher(servers, validTopic, invalidTopic);
-    reader.run(enricher);
 
   }
 
